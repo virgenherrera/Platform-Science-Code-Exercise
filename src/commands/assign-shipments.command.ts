@@ -1,4 +1,5 @@
 import { ICommand } from '../interfaces';
+import { getFileAsLines } from '../utils';
 
 export class AssignShipments implements ICommand {
   command = 'assign-shipment';
@@ -8,7 +9,13 @@ export class AssignShipments implements ICommand {
   description =
     'Assigns shipment destinations to drivers in a way that maximizes the total SS over the set of drivers.';
 
-  action(destinationsFileArg: string, driversFileArg: string): void {
-    console.log({ destinationsFileArg, driversFileArg });
+  async action(
+    destinationsFileArg: string,
+    driversFileArg: string,
+  ): Promise<void> {
+    const destinations = getFileAsLines(process.cwd(), destinationsFileArg);
+    const drivers = getFileAsLines(process.cwd(), driversFileArg);
+
+    console.log({ drivers, destinations });
   }
 }

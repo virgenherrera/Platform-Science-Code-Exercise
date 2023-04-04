@@ -9,5 +9,5 @@ export interface ICommand {
   alias: string;
   arguments: string;
   description: string;
-  action(...opts: any[]): void;
+  action(...opts: any[]): void | Promise<void>;
 }
