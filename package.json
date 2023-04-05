@@ -1,6 +1,6 @@
 {
   "name": "platform-science-code-exercise",
-  "version": "0.0.19",
+  "version": "1.0.19",
   "description": "",
   "preferGlobal": true,
   "bin": {
