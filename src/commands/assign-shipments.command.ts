@@ -1,5 +1,9 @@
 import { ICommand } from '../interfaces';
-import { AssignSsService, ReadFileService } from '../services';
+import {
+  AssignSsService,
+  FilterAssignmentsService,
+  ReadFileService,
+} from '../services';
 
 export class AssignShipments implements ICommand {
   command = 'assign-shipment';
@@ -11,9 +15,9 @@ export class AssignShipments implements ICommand {
   action(destinationsFileArg: string, driversFileArg: string): void {
     const { rows: addresses } = new ReadFileService(destinationsFileArg);
     const { rows: drivers } = new ReadFileService(driversFileArg);
+    const { sortedAssignments } = new AssignSsService(addresses, drivers);
+    const { assignments } = new FilterAssignmentsService(sortedAssignments);
 
-    const { assignments } = new AssignSsService(addresses, drivers);
-
-    console.log(assignments.map((v) => v.ss).join(','));
+    console.log(assignments);
   }
 }

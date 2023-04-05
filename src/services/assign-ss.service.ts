@@ -9,7 +9,7 @@ import {
 } from '../utils';
 
 export class AssignSsService {
-  private _assignments: Assignment[] = [];
+  private assignments: Assignment[] = [];
 
   constructor(
     private readonly addresses: string[],
@@ -18,8 +18,8 @@ export class AssignSsService {
     this.setAssignments();
   }
 
-  get assignments() {
-    return this._assignments.sort((a, b) => a.ss - b.ss);
+  get sortedAssignments() {
+    return this.assignments.sort((a, b) => b.ss - a.ss);
   }
 
   private setAssignments() {
@@ -45,7 +45,7 @@ export class AssignSsService {
         streetName,
       );
 
-      this._assignments.push(new Assignment(address, driver, ss));
+      this.assignments.push(new Assignment(address, driver, ss));
     });
   }
 
@@ -58,7 +58,7 @@ export class AssignSsService {
         streetName,
       );
 
-      this._assignments.push(new Assignment(address, driver, ss));
+      this.assignments.push(new Assignment(address, driver, ss));
     });
   }
 
