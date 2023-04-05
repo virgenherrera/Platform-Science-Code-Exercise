@@ -5,16 +5,16 @@ export class ReadFileService {
   rows: string[];
 
   constructor(public readonly fileRelativePath: string) {
-    this.rows = this.setRowsFromFile(process.cwd(), fileRelativePath);
+    this.setRowsFromFile(process.cwd(), fileRelativePath);
   }
 
-  private setRowsFromFile(...paths: string[]): string[] {
+  private setRowsFromFile(...paths: string[]) {
     const path = resolve(join(...paths));
     const stringFileContent = readFileSync(path, {
       encoding: 'utf8',
       flag: 'r',
     });
 
-    return stringFileContent.split(/\r?\n/).filter((v) => !!v);
+    this.rows = stringFileContent.split(/\r?\n/).filter((v) => !!v);
   }
 }
