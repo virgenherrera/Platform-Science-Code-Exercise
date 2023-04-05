@@ -5,7 +5,11 @@ import { readJsonFile } from '../utils';
 
 export function cliBootstrap() {
   const vFlags = ['-v', '--version'];
-  const appPackage = readJsonFile<AppPackage>('package.json');
+  const appPackage = readJsonFile<AppPackage>(
+    __dirname,
+    '../../',
+    'package.json',
+  );
   const program = new Command();
   const availableCommands = [];
 

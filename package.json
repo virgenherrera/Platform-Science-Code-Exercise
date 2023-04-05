@@ -2,12 +2,17 @@
   "name": "platform-science-code-exercise",
   "version": "0.0.19",
   "description": "",
+  "preferGlobal": true,
+  "bin": {
+    "psce": "./bin/cli"
+  },
   "scripts": {
     "start": "node ./dist",
     "dev": "ts-node ./src",
     "test": "run-s -l check:* test:*",
     "cleanup": "rimraf coverage/ dist/",
     "prestart": "run-s -l cleanup build:ts",
+    "install": "run-s -l cleanup build:ts",
     "UT:develop": "jest --watch --maxWorkers=1",
     "UT:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:unit": "jest",
